@@ -1,6 +1,10 @@
-# online_store
+# ✨A2Z Store App✨
 
-A new Flutter project.
+## 📝System Design
+
+![widgets](https://github.com/mahmoud-alaa77/Doctor_app/assets/126196219/0bb16ca0-b919-4300-ac5b-897ebf122642)
+
+## 👉Api link   [ https://rb.gy/hdu9zp](https://fakeapi.platzi.com/en/rest/products/)
 
 ## Getting Started
 
