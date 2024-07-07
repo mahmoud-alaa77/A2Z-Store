@@ -32,16 +32,30 @@ dependencies:
     sdk: flutter
 
 
-#Customize Flutter's default white native splash screen
+  #Customize Flutter's default white native splash screen
   flutter_native_splash: ^2.4.0
-#A page slider with parallex design that allows (Text) widgets or body to slide at a different speed with background.
+  #A page slider with parallex design that allows (Text) widgets or body to slide at a different speed with background.
   flutter_onboarding_slider: ^1.0.11
-#A flutter plugin for adapting screen and font size
+  #A flutter plugin for adapting screen and font size
   flutter_screenutil: ^5.9.3
+  #Flutter plugin for Firebase Auth
+  firebase_auth: ^4.18.0
+  #for statemangement
+  flutter_bloc: ^8.1.6
+  #Automatically generate code for converting to and from JSON by annotating Dart classes
+  json_serializable: ^6.8.0
+  json_annotation: ^4.9.0
+  #A build system for Dart code generation and modular compilation.
+  build_runner: ^2.4.11
+  #Functional Programming in Dart for error handling
+  dartz: ^0.10.1
+  #Simple direct Service Locator that allows to decouple the interface from a concrete implementation and to access the concrete implementation from everywhere in your App"
+  get_it: ^7.7.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
+  firebase_core: ^2.32.0
 
 dev_dependencies:
   flutter_test:

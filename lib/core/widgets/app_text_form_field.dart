@@ -34,8 +34,8 @@ class AppTextFormField extends StatelessWidget {
     return TextFormField(
       keyboardType: keyboardType ?? TextInputType.text,
       controller: controller,
-      validator: (value) {
-        validator(value);
+      validator: (value){
+        return validator(value);
       },
       decoration: InputDecoration(
         hintText: hint,
