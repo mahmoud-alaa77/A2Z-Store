@@ -20,8 +20,7 @@ class FirebaseAuthFailure extends Failure {
       case 'operation-not-allowed':
         return FirebaseAuthFailure('Operation not allowed');
       case 'too-many-requests':
-        return FirebaseAuthFailure(
-            'Too many login attempts. Please try again later.');
+        return FirebaseAuthFailure('Too many login attempts. Please try again later.');
       default:
         return FirebaseAuthFailure('login was canceled');
     }

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_store/core/helpers/constants.dart';
 import 'package:online_store/core/helpers/spacing.dart';
 import 'package:online_store/core/theming/app_text_styles.dart';
 import 'package:online_store/core/widgets/custom_divider_widget.dart';
 import 'package:online_store/core/widgets/custom_text_button.dart';
+import 'package:online_store/features/login/logic/cubit/login_cubit.dart';
 import 'package:online_store/features/login/ui/widgets/do_not_have_an_account.dart';
 import 'package:online_store/features/login/ui/widgets/email_and_password.dart';
+import 'package:online_store/features/login/ui/widgets/login_bloc_listener.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -41,9 +44,18 @@ class LoginScreen extends StatelessWidget {
               verticalSpace(12),
               const DoNotHaveAnAccount(),
               verticalSpace(36),
-              const CustomTextButton(
+              CustomTextButton(
                 title: "Login",
                 width: double.infinity,
+                onTap: () {
+                  if (context
+                      .read<LoginCubit>()
+                      .formKey
+                      .currentState!
+                      .validate()) {
+                    context.read<LoginCubit>().login();
+                  }
+                },
               ),
               verticalSpace(12),
               const CustomDividerWidget(),
@@ -55,6 +67,7 @@ class LoginScreen extends StatelessWidget {
                 icon: Icons.facebook,
                 iconColor: Colors.white,
               ),
+              const LoginBlocListener(),
             ],
           ),
         ),

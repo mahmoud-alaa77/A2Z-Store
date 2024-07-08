@@ -51,6 +51,8 @@ dependencies:
   dartz: ^0.10.1
   #Simple direct Service Locator that allows to decouple the interface from a concrete implementation and to access the concrete implementation from everywhere in your App"
   get_it: ^7.7.0
+  #package to show beautiful dialogs with animations as simply as possible.
+  awesome_dialog: ^3.2.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

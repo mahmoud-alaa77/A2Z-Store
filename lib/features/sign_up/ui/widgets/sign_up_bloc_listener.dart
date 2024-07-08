@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,11 +20,16 @@ class SignUpBlocListener extends StatelessWidget {
       listener: (context, state) {
         if (state is SignUpFailure) {
           context.pop();
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.errorMessage),
-            ),
-          );
+
+          AwesomeDialog(
+          context: context,
+          dialogType: DialogType.error,
+          animType: AnimType.bottomSlide,
+          title:'ERROR !',
+          desc: state.errorMessage,
+          btnOkOnPress: () {},
+          ).show();
+         
         } else if (state is SignUpSuccess) {
           context.pop();
 
