@@ -18,8 +18,10 @@ class A2zStore extends StatelessWidget {
         title: 'A2Z STORE',
         theme: ThemeData(
             scaffoldBackgroundColor: Colors.white,
-            primaryColor: AppColors.mainBlack),
-        initialRoute: Routes.onBoardingScreen,
+            primaryColor: AppColors.mainBlack,
+            fontFamily: "Margarine"
+            ),
+        initialRoute: Routes.homeScreen,
         onGenerateRoute: appRouter.genrateRoute,
       ),
     );
