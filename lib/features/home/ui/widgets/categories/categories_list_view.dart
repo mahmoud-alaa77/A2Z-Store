@@ -15,6 +15,7 @@ class CategoriesListView extends StatefulWidget {
   State<CategoriesListView> createState() => _CategoriesListViewState();
 }
 
+
 class _CategoriesListViewState extends State<CategoriesListView> {
   int currentIndex = 0;
 
@@ -30,7 +31,7 @@ class _CategoriesListViewState extends State<CategoriesListView> {
             current is CategoriesLoading,
         builder: (context, state) {
           if (state is CategoriesLoadedSuccess) {
-            context.read<ProductCubit>().getProductsByCategoryId(state.categories.first.lowercaseName);
+           // context.read<ProductCubit>().getProductsByCategoryId(state.categories.first.lowercaseName);
             return setCategoriesLoaded(state);
           } else if (state is CategoriesLoadedFailure) {
             return Center(child: Text(state.message));

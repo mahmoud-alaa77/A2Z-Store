@@ -17,6 +17,16 @@ class ProductItem extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(borderRadius: BorderRadius.circular(24),
+        /*  gradient: LinearGradient(colors: [
+           Colors.white,
+           AppColors.lightGray,
+            AppColors.lighterGray,
+            
+            Colors.white
+          ],
+          begin: AlignmentDirectional.topStart,
+          end: AlignmentDirectional.bottomEnd
+          ),*/
           color: AppColors.lighterGray
           ),
           child: ClipRRect(

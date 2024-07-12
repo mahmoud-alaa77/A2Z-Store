@@ -36,7 +36,7 @@ Future<void> setupGetIt() async {
   //home
 
   getIt.registerLazySingleton<HomeRepo>(() => HomeRepo(apiService: getIt()));
-  getIt.registerFactory<ProductCubit>(() => ProductCubit(getIt()));
+  getIt.registerFactory<ProductCubit>(() => ProductCubit(getIt())..getProductsByCategoryId("beauty"));
    getIt.registerFactory<CategoryCubit>(() => CategoryCubit(getIt()));
 }
 
