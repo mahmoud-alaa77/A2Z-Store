@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:online_store/core/helpers/spacing.dart';
 import 'package:online_store/core/theming/app_text_styles.dart';
-import 'package:online_store/features/home/ui/widgets/categories_list_view.dart';
+import 'package:online_store/features/home/ui/widgets/categories/categories_list_view.dart';
 import 'package:online_store/features/home/ui/widgets/custom_filter_button.dart';
 import 'package:online_store/features/home/ui/widgets/custom_search_widget.dart';
-import 'package:online_store/features/home/ui/widgets/products_list_view.dart';
+import 'package:online_store/features/home/ui/widgets/products/products_list_view.dart';
 
 class HomeScreenBody extends StatelessWidget {
   const HomeScreenBody({super.key});
@@ -15,42 +15,43 @@ class HomeScreenBody extends StatelessWidget {
       padding:
           const EdgeInsetsDirectional.symmetric(horizontal: 20, vertical: 8),
       child: CustomScrollView(
-scrollDirection: Axis.vertical,
-slivers: [
-  SliverToBoxAdapter(
-    child:Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "Hi, Mahmoud",
-              style: AppTextStyles.font24BlackW900,
+        scrollDirection: Axis.vertical,
+        slivers: [
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Hi, Mahmoud",
+                  style: AppTextStyles.font24BlackW900,
+                ),
+                const Text(
+                  "To our Store",
+                  style: AppTextStyles.font18DarkGrayW700,
+                ),
+                verticalSpace(16),
+                const Row(
+                  children: [
+                    CustomSearchWidget(),
+                    Spacer(),
+                    CustomFilterButton()
+                  ],
+                ),
+                verticalSpace(12),
+                const Text(
+                  "Categories",
+                  style: AppTextStyles.font24BlackW900,
+                ),
+                verticalSpace(12),
+                const CategoriesListView(),
+                verticalSpace(24),
+              ],
             ),
-            const Text(
-              "To our Store",
-              style: AppTextStyles.font18DarkGrayW700,
-            ),
-            verticalSpace(16),
-            const Row(
-              children: [CustomSearchWidget(), Spacer(), CustomFilterButton()],
-            ),
-            verticalSpace(12),
-            const Text(
-              "Categories",
-              style: AppTextStyles.font24BlackW900,
-            ),
-            verticalSpace(12),
-            const CategoriesListView(),
-            verticalSpace(24),
-           
-          ],
-        ) ,
-        
-  ),
-  const SliverToBoxAdapter(
-    child:  ProductsListView(),
-  )
-],
-
+          ),
+          const SliverToBoxAdapter(
+            child: ProductsListView(),
+          )
+        ],
       ),
     );
   }
