@@ -31,6 +31,9 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
           (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
       category: json['category'] as String?,
       price: (json['price'] as num?)?.toDouble(),
+      reviews: (json['reviews'] as List<dynamic>?)
+          ?.map((e) => Review.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
@@ -46,4 +49,21 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
       'brand': instance.brand,
       'weight': instance.weight,
       'thumbnail': instance.mainImage,
+      'reviews': instance.reviews,
+    };
+
+Review _$ReviewFromJson(Map<String, dynamic> json) => Review(
+      comment: json['comment'] as String,
+      reviewerName: json['reviewerName'] as String,
+      rating: (json['rating'] as num).toDouble(),
+      reviewerEmail: json['reviewerEmail'] as String,
+      date: json['date'] as String,
+    );
+
+Map<String, dynamic> _$ReviewToJson(Review instance) => <String, dynamic>{
+      'comment': instance.comment,
+      'reviewerName': instance.reviewerName,
+      'rating': instance.rating,
+      'reviewerEmail': instance.reviewerEmail,
+      'date': instance.date,
     };

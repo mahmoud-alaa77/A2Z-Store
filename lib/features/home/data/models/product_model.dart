@@ -1,36 +1,17 @@
 import 'package:json_annotation/json_annotation.dart';
-
 part 'product_model.g.dart';
 
-
-
-
 @JsonSerializable()
-class ProductModel{
-
-
+class ProductModel {
   final List<Product> products;
 
-ProductModel({required this.products});
+  ProductModel({required this.products});
 
-factory ProductModel.fromJson(Map<String, dynamic> json) =>
+  factory ProductModel.fromJson(Map<String, dynamic> json) =>
       _$ProductModelFromJson(json);
 
   Map<String, dynamic> toJson() => _$ProductModelToJson(this);
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 @JsonSerializable()
 class Product {
@@ -47,6 +28,8 @@ class Product {
   final double? weight;
   @JsonKey(name: "thumbnail")
   final String? mainImage;
+  List<Review>? reviews;
+
 
   Product(
       {required this.id,
@@ -60,7 +43,9 @@ class Product {
       required this.description,
       required this.images,
       required this.category,
-      required this.price});
+      required this.price,
+      required this.reviews
+      });
 
   factory Product.fromJson(Map<String, dynamic> json) =>
       _$ProductFromJson(json);
@@ -68,5 +53,22 @@ class Product {
   Map<String, dynamic> toJson() => _$ProductToJson(this);
 }
 
+@JsonSerializable()
+class Review {
+  final String comment;
+  final String reviewerName;
+  final double rating;
+  final String reviewerEmail;
+  final String date;
 
+  Review(
+      {required this.comment,
+      required this.reviewerName,
+      required this.rating,
+      required this.reviewerEmail,
+      required this.date});
 
+  factory Review.fromJson(Map<String, dynamic> json) => _$ReviewFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ReviewToJson(this);
+}
