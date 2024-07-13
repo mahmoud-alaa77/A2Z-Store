@@ -3,7 +3,7 @@ import 'package:online_store/core/helpers/spacing.dart';
 import 'package:online_store/core/theming/app_text_styles.dart';
 import 'package:online_store/features/home/ui/widgets/categories/categories_list_view.dart';
 import 'package:online_store/features/home/ui/widgets/custom_filter_button.dart';
-import 'package:online_store/features/home/ui/widgets/custom_search_widget.dart';
+import 'package:online_store/features/home/ui/widgets/search_button.dart';
 import 'package:online_store/features/home/ui/widgets/products/products_list_view.dart';
 
 class HomeScreenBody extends StatelessWidget {
@@ -32,7 +32,7 @@ class HomeScreenBody extends StatelessWidget {
                 verticalSpace(16),
                 const Row(
                   children: [
-                    CustomSearchWidget(),
+                    SearchButton(),
                     Spacer(),
                     CustomFilterButton()
                   ],
