@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:online_store/core/theming/app_colors.dart';
+import 'package:online_store/core/helpers/extensions.dart';
+import 'package:online_store/core/routing/routes.dart';
 import 'package:online_store/features/home/logic/cubits/products_cubit/product_cubit.dart';
 import 'package:online_store/features/home/ui/widgets/products/product_item.dart';
 import 'package:online_store/features/home/ui/widgets/products/products_shimmer_loading.dart';
@@ -11,7 +12,10 @@ class ProductsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProductCubit, ProductState>(
-      buildWhen: (previous, current) => current is ProductsLoadedFailure || current is ProductsLoadedSuccess || current is ProductsLoading,
+      buildWhen: (previous, current) =>
+          current is ProductsLoadedFailure ||
+          current is ProductsLoadedSuccess ||
+          current is ProductsLoading,
       builder: (context, state) {
         if (state is ProductsLoadedSuccess) {
           return GridView.builder(
@@ -26,6 +30,9 @@ class ProductsListView extends StatelessWidget {
             itemBuilder: (context, index) {
               return ProductItem(
                 product: state.productsResponse.products[index],
+                onTap: () {
+                  context.pushNamed(Routes.productDetailsScreen ,arguments: state.productsResponse.products[index]);
+                },
               );
             },
           );

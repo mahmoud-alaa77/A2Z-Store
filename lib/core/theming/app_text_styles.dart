@@ -65,6 +65,12 @@ static const TextStyle font12DarkGrayW400 = TextStyle(
     fontWeight: FontWeight.w700,
   );
 
+  static const TextStyle font14WhiteW500 = TextStyle(
+    color: Colors.white,
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+  );
+
 static const TextStyle font14BlueW700 = TextStyle(
     color: Colors.blue,
     fontSize: 14,
