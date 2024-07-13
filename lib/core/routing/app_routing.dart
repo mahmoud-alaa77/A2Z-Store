@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_store/core/di/dependancy_injection.dart';
 import 'package:online_store/core/routing/routes.dart';
+import 'package:online_store/features/home/data/models/product_model.dart';
 import 'package:online_store/features/home/logic/cubits/categories_cubit/category_cubit.dart';
 import 'package:online_store/features/home/logic/cubits/products_cubit/product_cubit.dart';
 import 'package:online_store/features/home/ui/home_screen.dart';
 import 'package:online_store/features/login/logic/cubit/login_cubit.dart';
 import 'package:online_store/features/login/ui/login_screen.dart';
 import 'package:online_store/features/on_boarding/ui/on_boarding_screen.dart';
+import 'package:online_store/features/product_details/ui/product_details_screen.dart';
 import 'package:online_store/features/sign_up/logic/sign_up_cubit.dart';
 import 'package:online_store/features/sign_up/ui/sign_up_screen.dart';
 
@@ -32,14 +34,23 @@ class AppRouter {
 
       case Routes.homeScreen:
         return MaterialPageRoute(
-            builder: (context) => MultiBlocProvider(
-              providers: [
-                BlocProvider(
-                  create: (context) => getIt<ProductCubit>(),),
+            builder: (context) => MultiBlocProvider(providers: [
                   BlocProvider(
-                  create: (context) => getIt<CategoryCubit>()..getAllCategories(),)
-              ],
-              child: const HomeScreen()));
+                    create: (context) => getIt<ProductCubit>(),
+                  ),
+                  BlocProvider(
+                    create: (context) =>
+                        getIt<CategoryCubit>()..getAllCategories(),
+                  )
+                ], child: const HomeScreen()));
+
+      case Routes.productDetailsScreen:
+      final arg = settings.arguments as Product;
+        return MaterialPageRoute(
+            builder: (context) =>  ProductDetailsScreen(
+              product: arg,
+            ));
+
       default:
         return null;
     }
