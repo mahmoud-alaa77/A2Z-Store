@@ -10,6 +10,8 @@ import 'package:online_store/features/login/logic/cubit/login_cubit.dart';
 import 'package:online_store/features/login/ui/login_screen.dart';
 import 'package:online_store/features/on_boarding/ui/on_boarding_screen.dart';
 import 'package:online_store/features/product_details/ui/product_details_screen.dart';
+import 'package:online_store/features/search/logic/cubit/search_cubit.dart';
+import 'package:online_store/features/search/ui/search_screen.dart';
 import 'package:online_store/features/sign_up/logic/sign_up_cubit.dart';
 import 'package:online_store/features/sign_up/ui/sign_up_screen.dart';
 
@@ -45,11 +47,17 @@ class AppRouter {
                 ], child: const HomeScreen()));
 
       case Routes.productDetailsScreen:
-      final arg = settings.arguments as Product;
+        final arg = settings.arguments as Product;
         return MaterialPageRoute(
-            builder: (context) =>  ProductDetailsScreen(
-              product: arg,
-            ));
+            builder: (context) => ProductDetailsScreen(
+                  product: arg,
+                ));
+      case Routes.searchScreen:
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+                  create: (context) => getIt<SearchCubit>(),
+                  child: const SearchScreen(),
+                ));
 
       default:
         return null;

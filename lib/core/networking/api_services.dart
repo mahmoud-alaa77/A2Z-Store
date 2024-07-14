@@ -16,4 +16,9 @@ abstract class ApiServices {
   @GET("/category/{categoryName}")
   Future<ProductModel> getProductsByCategoryId(
       @Path("categoryName") String categoryName);
+
+
+      @GET('/search?q={title}')
+      Future<ProductModel> searchByName(
+          @Path("title") String title);
 }

@@ -7,6 +7,8 @@ import 'package:online_store/features/home/logic/cubits/categories_cubit/categor
 import 'package:online_store/features/home/logic/cubits/products_cubit/product_cubit.dart';
 import 'package:online_store/features/login/data/repos/login_repo.dart';
 import 'package:online_store/features/login/logic/cubit/login_cubit.dart';
+import 'package:online_store/features/search/data/repos/search_repo.dart';
+import 'package:online_store/features/search/logic/cubit/search_cubit.dart';
 import 'package:online_store/features/sign_up/data/repos/sign_up_repo.dart';
 import 'package:online_store/features/sign_up/logic/sign_up_cubit.dart';
 
@@ -38,6 +40,11 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<HomeRepo>(() => HomeRepo(apiService: getIt()));
   getIt.registerFactory<ProductCubit>(() => ProductCubit(getIt())..getProductsByCategoryId("beauty"));
    getIt.registerFactory<CategoryCubit>(() => CategoryCubit(getIt()));
+
+   //search
+
+  getIt.registerLazySingleton<SearchRepo>(() => SearchRepo( getIt()));
+   getIt.registerFactory<SearchCubit>(() => SearchCubit(getIt()));
 }
 
 Dio createAndSetUpDio() {
