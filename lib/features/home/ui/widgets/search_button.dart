@@ -15,11 +15,11 @@ class SearchButton extends StatelessWidget {
         context.pushNamed(Routes.searchScreen);
       },
       child: Container(
-        width: MediaQuery.of(context).size.width - 100.w,
+        width: MediaQuery.of(context).size.width ,
         padding:
             const EdgeInsetsDirectional.symmetric(horizontal: 12, vertical: 14),
         decoration: BoxDecoration(
-          borderRadius: BorderRadiusDirectional.circular(40),
+          borderRadius: BorderRadiusDirectional.circular(12),
           color: AppColors.lighterGray,
         ),
         child: Row(

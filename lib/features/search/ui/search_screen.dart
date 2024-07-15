@@ -4,6 +4,7 @@ import 'package:online_store/core/helpers/extensions.dart';
 import 'package:online_store/core/helpers/spacing.dart';
 import 'package:online_store/core/theming/app_colors.dart';
 import 'package:online_store/features/home/data/models/product_model.dart';
+import 'package:online_store/features/home/ui/widgets/custom_filter_button.dart';
 import 'package:online_store/features/home/ui/widgets/products/product_item.dart';
 import 'package:online_store/features/search/logic/cubit/search_cubit.dart';
 import 'package:online_store/features/search/ui/widgets/custom_search_widget.dart';
@@ -41,6 +42,8 @@ class SearchScreen extends StatelessWidget {
                     context.read<SearchCubit>().searchByValue(value);
                   },
                 )),
+                horizontalSpace(8),
+                const CustomFilterButton(),
               ],
             ),
             verticalSpace(24),
