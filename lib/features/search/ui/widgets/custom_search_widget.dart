@@ -12,6 +12,7 @@ class CustomSearchWidget extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
       child: TextField(
+      
         cursorColor: AppColors.mainBlack,
         autofocus: false,
         decoration: InputDecoration(
@@ -37,6 +38,7 @@ class CustomSearchWidget extends StatelessWidget {
           
         ),
         onChanged: onChanged,
+        
       ),
     );
   }

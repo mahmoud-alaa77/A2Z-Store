@@ -4,11 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:online_store/core/helpers/constants.dart';
 import 'package:online_store/core/helpers/spacing.dart';
-
 import 'package:online_store/core/theming/app_text_styles.dart';
-
+import 'package:online_store/features/home/data/models/product_model.dart';
 import 'package:online_store/features/search/logic/cubit/search_cubit.dart';
 import 'package:online_store/features/search/ui/widgets/product_search_item.dart';
+import 'package:online_store/features/search/ui/widgets/search_list_shimmer_loading.dart';
 
 class SearchBlocBuilder extends StatelessWidget {
   const SearchBlocBuilder({super.key});
@@ -19,7 +19,8 @@ class SearchBlocBuilder extends StatelessWidget {
       child: BlocBuilder<SearchCubit, SearchState>(
         builder: (context, state) {
           if (state is SearchSuccessful) {
-            return state.productModel.products.isEmpty
+            List<Product> productsList = state.productsList;
+            return productsList.isEmpty
                 ? Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -37,10 +38,9 @@ class SearchBlocBuilder extends StatelessWidget {
                   )
                 : ListView.separated(
                     separatorBuilder: (context, index) => verticalSpace(16),
-                    itemCount: state.productModel.products.length,
+                    itemCount: productsList.length,
                     itemBuilder: (context, index) {
-                      return ProductSearchItem(
-                          product: state.productModel.products[index]);
+                      return ProductSearchItem(product: productsList[index]);
                     },
                   );
           } else if (state is SearchError) {
@@ -53,7 +53,7 @@ class SearchBlocBuilder extends StatelessWidget {
               height: 200.h,
             ));
           } else {
-            return const Center(child: CircularProgressIndicator());
+            return const SearchListShimmerLoading();
           }
         },
       ),

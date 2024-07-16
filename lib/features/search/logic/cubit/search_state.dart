@@ -7,15 +7,13 @@ final class SearchInitial extends SearchState {}
 final class SearchLoading extends SearchState {}
 
 final class SearchSuccessful extends SearchState {
-  final ProductModel productModel;
+  final List<Product> productsList;
 
-  SearchSuccessful({required this.productModel});
-
- 
+  SearchSuccessful({required this.productsList});
 }
 
 final class SearchError extends SearchState {
   final String message;
 
-   SearchError({required this.message});
+  SearchError({required this.message});
 }

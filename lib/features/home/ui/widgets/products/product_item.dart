@@ -40,7 +40,7 @@ class ProductItem extends StatelessWidget {
           ),
           verticalSpace(2),
           Text(
-            product.brand.toString(),
+            product.brand ?? "No Brand",
             style: AppTextStyles.font12DarkGrayW400,
           ),
           verticalSpace(2),
