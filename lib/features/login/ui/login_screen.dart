@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_store/core/helpers/constants.dart';
+import 'package:online_store/core/helpers/extensions.dart';
 import 'package:online_store/core/helpers/spacing.dart';
+import 'package:online_store/core/routing/routes.dart';
 import 'package:online_store/core/theming/app_text_styles.dart';
 import 'package:online_store/core/widgets/custom_divider_widget.dart';
 import 'package:online_store/core/widgets/custom_text_button.dart';
@@ -60,12 +62,18 @@ class LoginScreen extends StatelessWidget {
               verticalSpace(12),
               const CustomDividerWidget(),
               verticalSpace(12),
-              const CustomTextButton(
-                title: "Continue with facebook",
+              CustomTextButton(
+                title: "Continue with Google",
                 width: double.infinity,
-                color: Color.fromARGB(255, 3, 115, 207),
-                icon: Icons.facebook,
-                iconColor: Colors.white,
+                color: Colors.white,
+                showImage: true,
+                image: "assets/icons/gmail_icon.png",
+                style: AppTextStyles.font16BlackW400,
+                onTap: ()async {
+                await  context.read<LoginCubit>().loginWithGoogle();
+                  // ignore: use_build_context_synchronously
+                  context.pushReplacementNamed(Routes.homeScreen);
+                },
               ),
               const LoginBlocListener(),
             ],

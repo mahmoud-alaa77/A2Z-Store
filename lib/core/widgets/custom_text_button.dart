@@ -16,6 +16,8 @@ class CustomTextButton extends StatelessWidget {
   final IconData? icon;
   final Color? iconColor;
   final double? iconSize;
+  final String? image;
+  final bool showImage;
   const CustomTextButton(
       {super.key,
       required this.title,
@@ -27,7 +29,9 @@ class CustomTextButton extends StatelessWidget {
       this.color,
       this.icon,
       this.iconColor,
-      this.iconSize});
+      this.iconSize,
+      this.image,
+      this.showImage=false});
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +42,15 @@ class CustomTextButton extends StatelessWidget {
         height: height ?? 52.h,
         decoration: BoxDecoration(
             color: color ?? AppColors.mainBlack,
-            borderRadius: borderRadius ?? BorderRadiusDirectional.circular(16)),
+            borderRadius: borderRadius ?? BorderRadiusDirectional.circular(16),
+            border: Border.all(
+              color: AppColors.mainBlack,
+              width: 1,
+            )),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+           showImage ? Image.asset(image!,width: 40,height: 40,): Icon(
               icon,
               color: iconColor,
               size: iconSize,
