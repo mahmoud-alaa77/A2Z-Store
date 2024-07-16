@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_store/core/helpers/spacing.dart';
 import 'package:online_store/core/theming/app_text_styles.dart';
 import 'package:online_store/features/home/ui/widgets/categories/categories_list_view.dart';
-import 'package:online_store/features/home/ui/widgets/custom_filter_button.dart';
 import 'package:online_store/features/home/ui/widgets/drawer/drawer_menu.dart';
 import 'package:online_store/features/home/ui/widgets/home_app_bar.dart';
 import 'package:online_store/features/home/ui/widgets/search_button.dart';
@@ -73,10 +72,10 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
         child: Material(
           animationDuration: duration,
           borderRadius: const BorderRadius.all(Radius.circular(40)),
-          elevation: 8,
+          elevation:isCollapsed ? 0 : 12,
           color: Colors.white,
           child: Container(
-            padding: const EdgeInsets.only(left: 16, right: 16, top: 24),
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 16),
             child: CustomScrollView(
               scrollDirection: Axis.vertical,
               slivers: [
