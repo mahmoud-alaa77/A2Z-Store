@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:online_store/core/routing/app_routing.dart';
 import 'package:online_store/core/routing/routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_store/main.dart';
 import 'core/theming/app_colors.dart';
 
 class A2zStore extends StatelessWidget {
@@ -21,7 +22,7 @@ class A2zStore extends StatelessWidget {
             primaryColor: AppColors.mainBlack,
             fontFamily: "Margarine"
             ),
-        initialRoute: Routes.loginScreen,
+        initialRoute:isLogedInUser? Routes.homeScreen: Routes.onBoardingScreen,
         onGenerateRoute: appRouter.genrateRoute,
       ),
     );

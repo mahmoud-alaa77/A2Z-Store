@@ -71,7 +71,10 @@ dependencies:
   flutter_svg: ^2.0.10+1
   #Full flutter support for latest Google Material Symbols Icons.
   material_symbols_icons: ^4.2768.0
-  
+  #Flutter plugin for reading and writing simple key-value pairs
+  shared_preferences: ^2.2.3
+  #Flutter Secure Storage provides API to store data in secure storage.
+  flutter_secure_storage: ^9.2.2
 
   google_sign_in: ^6.2.1
   # The following adds the Cupertino Icons font to your application.
