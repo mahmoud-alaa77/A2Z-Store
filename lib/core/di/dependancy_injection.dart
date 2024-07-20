@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
@@ -21,6 +22,10 @@ Future<void> setupGetIt() async {
     () => FirebaseAuth.instance,
   );
 
+  getIt.registerLazySingleton<FirebaseFirestore>(
+    () => FirebaseFirestore.instance,
+  );
+
   //Api Service
 
   getIt.registerLazySingleton<ApiServices>(
@@ -32,7 +37,7 @@ Future<void> setupGetIt() async {
   getIt.registerFactory<SignUpCubit>(() => SignUpCubit(getIt()));
 
   // login
-  getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt()));
+  getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt(),getIt()));
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
 
   //home

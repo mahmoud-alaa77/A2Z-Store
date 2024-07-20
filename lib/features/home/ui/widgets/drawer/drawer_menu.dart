@@ -65,9 +65,9 @@ class DrawerMenu extends StatelessWidget {
                   title: 'Log out',
                   onTap: () async {
                     await FirebaseAuth.instance.signOut();
-                    await GoogleSignIn().disconnect();
+                    await GoogleSignIn().signOut();
+
                     context.pushReplacementNamed(Routes.loginScreen);
-                    
                   },
                   icon: Icons.login_outlined,
                 ),
