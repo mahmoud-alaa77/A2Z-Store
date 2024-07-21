@@ -22,14 +22,13 @@ class SignUpBlocListener extends StatelessWidget {
           context.pop();
 
           AwesomeDialog(
-          context: context,
-          dialogType: DialogType.error,
-          animType: AnimType.bottomSlide,
-          title:'ERROR !',
-          desc: state.errorMessage,
-          btnOkOnPress: () {},
+            context: context,
+            dialogType: DialogType.error,
+            animType: AnimType.bottomSlide,
+            title: 'ERROR !',
+            desc: state.errorMessage,
+            btnOkOnPress: () {},
           ).show();
-         
         } else if (state is SignUpSuccess) {
           context.pop();
 

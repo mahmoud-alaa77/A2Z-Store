@@ -22,7 +22,8 @@ class A2zStore extends StatelessWidget {
             primaryColor: AppColors.mainBlack,
             fontFamily: "Margarine"
             ),
-        initialRoute:isLogedInUser? Routes.homeScreen: Routes.onBoardingScreen,
+            //initialRoute: Routes.loginScreen,
+       initialRoute:isLogedInUser? Routes.homeScreen: Routes.onBoardingScreen,
         onGenerateRoute: appRouter.genrateRoute,
       ),
     );

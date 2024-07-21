@@ -1,6 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:online_store/core/helpers/constants.dart';
-import 'package:online_store/core/helpers/shared_pref_helper.dart';
 import 'package:online_store/features/sign_up/data/models/user_model.dart';
 import 'package:online_store/features/sign_up/data/repos/sign_up_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,18 +25,9 @@ class SignUpCubit extends Cubit<SignUpState> {
     );
     var response = await _signUpRepo.signUp(newUser);
 
-    response.fold(
-      (failure) => emit(SignUpFailure(failure.errorMessage)),
-      (userModel) {
-        emit(SignUpSuccess(userModel));
-        saveUserToken(userModel.token);
-      }
-    );
+    response.fold((failure) => emit(SignUpFailure(failure.errorMessage)),
+        (userModel) {
+      emit(SignUpSuccess(userModel));
+    });
   }
-
-
-Future<void> saveUserToken(String token) async {
-    SharedPrefHelper.setSecuredString(SharedPrefKeys.userToken, token);
-  }
-
 }

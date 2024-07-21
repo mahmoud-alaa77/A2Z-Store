@@ -35,9 +35,9 @@ class LoginCubit extends Cubit<LoginState> {
 
     response?.fold((failure) {
       emit(LoginFailure(message: failure.errorMessage));
-    }, (userCredential) {
-      saveUserToken(userCredential.user!.uid);
-      emit(LoginSuccess(userCredential.user!.uid));
+    }, (user) async {
+      await saveUserToken(user.token);
+      emit(LoginSuccess(user.token));
     });
   }
 

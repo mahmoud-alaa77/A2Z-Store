@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_store/core/di/dependancy_injection.dart';
+import 'package:online_store/core/helpers/constants.dart';
+import 'package:online_store/core/helpers/shared_pref_helper.dart';
 import 'package:online_store/core/routing/routes.dart';
 import 'package:online_store/features/home/data/models/product_model.dart';
 import 'package:online_store/features/home/logic/cubits/categories_cubit/category_cubit.dart';
@@ -10,6 +13,7 @@ import 'package:online_store/features/login/logic/cubit/login_cubit.dart';
 import 'package:online_store/features/login/ui/login_screen.dart';
 import 'package:online_store/features/on_boarding/ui/on_boarding_screen.dart';
 import 'package:online_store/features/product_details/ui/product_details_screen.dart';
+import 'package:online_store/features/home/logic/cubits/profile_cubit/profile_cubit.dart';
 import 'package:online_store/features/search/logic/cubit/search_cubit.dart';
 import 'package:online_store/features/search/ui/search_screen.dart';
 import 'package:online_store/features/sign_up/logic/sign_up_cubit.dart';
@@ -43,6 +47,11 @@ class AppRouter {
                   BlocProvider(
                     create: (context) =>
                         getIt<CategoryCubit>()..getAllCategories(),
+                  ),
+                  BlocProvider(
+                    create: (context) =>
+                        getIt<ProfileCubit>()..loadProfileData(),
+                        //..loadProfileData( SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken))
                   )
                 ], child: const HomeScreen()));
 

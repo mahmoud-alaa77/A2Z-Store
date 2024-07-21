@@ -7,17 +7,27 @@ import 'package:online_store/core/routing/routes.dart';
 import 'package:online_store/features/home/ui/widgets/drawer/drawer_list_item.dart';
 import 'package:online_store/features/home/ui/widgets/drawer/profile_section.dart';
 
-class DrawerMenu extends StatelessWidget {
+class DrawerMenu extends StatefulWidget {
   final Animation<Offset> position;
   final Animation<double> scale;
   const DrawerMenu({super.key, required this.position, required this.scale});
 
   @override
+  State<DrawerMenu> createState() => _DrawerMenuState();
+}
+
+class _DrawerMenuState extends State<DrawerMenu> {
+  //  @override
+  //    initState(){
+  //   super.initState();
+  //   BlocProvider.of<ProfileCubit>(context);
+  // }
+  @override
   Widget build(BuildContext context) {
     return SlideTransition(
-      position: position,
+      position: widget.position,
       child: ScaleTransition(
-        scale: scale,
+        scale: widget.scale,
         child: Padding(
           padding: const EdgeInsets.only(left: 16.0),
           child: Align(
@@ -27,7 +37,7 @@ class DrawerMenu extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const ProfileSection(),
+                 ProfileSection(),
                 verticalSpace(32),
                 DrawerListItem(
                   title: "Edit Profile",
@@ -66,7 +76,7 @@ class DrawerMenu extends StatelessWidget {
                   onTap: () async {
                     await FirebaseAuth.instance.signOut();
                     await GoogleSignIn().signOut();
-
+                    //await SharedPrefHelper.clearAllSecuredData();
                     context.pushReplacementNamed(Routes.loginScreen);
                   },
                   icon: Icons.login_outlined,

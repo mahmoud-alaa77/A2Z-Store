@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_store/core/helpers/extensions.dart';
 import 'package:online_store/core/helpers/spacing.dart';
 import 'package:online_store/core/theming/app_colors.dart';
-import 'package:online_store/features/home/ui/widgets/custom_filter_button.dart';
+import 'package:online_store/features/home/ui/widgets/search/custom_filter_button.dart';
 import 'package:online_store/features/search/logic/cubit/search_cubit.dart';
 import 'package:online_store/features/search/ui/widgets/applay_and_cancel_buttons.dart';
 import 'package:online_store/features/search/ui/widgets/custom_search_widget.dart';
