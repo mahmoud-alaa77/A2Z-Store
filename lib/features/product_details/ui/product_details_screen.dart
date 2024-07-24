@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_store/core/helpers/constants.dart';
+import 'package:online_store/core/helpers/database_helper.dart';
+import 'package:online_store/core/helpers/shared_pref_helper.dart';
 import 'package:online_store/core/helpers/spacing.dart';
 import 'package:online_store/core/theming/app_colors.dart';
 import 'package:online_store/core/theming/app_text_styles.dart';
 import 'package:online_store/core/widgets/app_icon_button.dart';
 import 'package:online_store/core/widgets/custom_text_button.dart';
+import 'package:online_store/features/favorite_products/logic/cubit/favorites_cubit.dart';
 import 'package:online_store/features/home/data/models/product_model.dart';
 import 'package:online_store/features/product_details/ui/widgets/category_and_brand.dart';
 import 'package:online_store/features/product_details/ui/widgets/displaying_image_widget.dart';
@@ -12,9 +17,21 @@ import 'package:online_store/features/product_details/ui/widgets/list_of_reviews
 import 'package:online_store/features/product_details/ui/widgets/list_of_tags.dart';
 import 'package:online_store/features/product_details/ui/widgets/rating_widget.dart';
 
-class ProductDetailsScreen extends StatelessWidget {
+class ProductDetailsScreen extends StatefulWidget {
   final Product product;
   const ProductDetailsScreen({super.key, required this.product});
+
+  @override
+  State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
+}
+
+class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+  @override
+  void initState() {
+    BlocProvider.of<FavoritesCubit>(context)
+        .checkIsFavoriteOrNot(widget.product.title.toString());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +49,13 @@ class ProductDetailsScreen extends StatelessWidget {
                     children: [
                       verticalSpace(12),
                       DisplayingImagesWidget(
-                        images: product.images,
-                        lengthOfImagesList: product.images!.length,
+                        images: widget.product.images,
+                        lengthOfImagesList: widget.product.images!.length,
                       ),
                       verticalSpace(16),
                       CategoryAndBrand(
-                        category: product.category.toString(),
-                        brand: product.brand.toString(),
+                        category: widget.product.category.toString(),
+                        brand: widget.product.brand.toString(),
                       ),
                       verticalSpace(12),
                       Row(
@@ -47,29 +64,61 @@ class ProductDetailsScreen extends StatelessWidget {
                         children: [
                           Flexible(
                             child: Text(
-                              product.title.toString(),
+                              widget.product.title.toString(),
                               style: AppTextStyles.font18BlackW900
                                   .copyWith(fontSize: 20),
                             ),
                           ),
-                          AppIconButton(
-                            icon: Icons.favorite_sharp,
-                            iconColor: Colors.red,
-                            size: 40.w,
-                            onPressed: () {},
+                          BlocBuilder<FavoritesCubit, FavoritesState>(
+                            builder: (context, state) {
+                              if (state is IsFavoriteState) {
+                                return AppIconButton(
+                                  icon: Icons.favorite_rounded,
+                                  iconColor: state.isFavorite
+                                      ? Colors.red
+                                      : const Color.fromARGB(
+                                          255, 255, 255, 255),
+                                  size: 40.w,
+                                  onPressed: () async {
+                                    final db = DataBaseHelper();
+// if product is favorite --> delete it from favorites
+// if product is not favorite --> add it to favorites
+
+                                    state.isFavorite
+                                        ? db.delete(
+                                            widget.product.title.toString())
+                                        : db.saveItem(
+                                            widget.product,
+                                            await SharedPrefHelper
+                                                .getSecuredString(
+                                                    SharedPrefKeys.userToken));
+                                    BlocProvider.of<FavoritesCubit>(context)
+                                        .checkIsFavoriteOrNot(
+                                            widget.product.title.toString());
+                                  },
+                                );
+                              } else {
+                                return AppIconButton(
+                                  icon: Icons.favorite,
+                                  iconColor: Colors.transparent,
+                                  size: 40.w,
+                                  onPressed: () {},
+                                );
+                              }
+                            },
                           ),
                         ],
                       ),
                       verticalSpace(8),
-                      product.tags == null
+                      widget.product.tags == null
                           ? const SizedBox.shrink()
                           : ListOfTags(
-                              product: product,
+                              product: widget.product,
                             ),
                       verticalSpace(12),
                       RatingWidget(
-                          ratingValue: product.rating!.toDouble(),
-                          numsOfReview: product.reviews!.length),
+                          ratingValue: widget.product.rating!.toDouble(),
+                          numsOfReview: widget.product.reviews!.length),
                       verticalSpace(12),
                       Text(
                         "Description",
@@ -77,14 +126,14 @@ class ProductDetailsScreen extends StatelessWidget {
                             .copyWith(fontSize: 18),
                       ),
                       verticalSpace(8),
-                      Text(product.description.toString(),
+                      Text(widget.product.description.toString(),
                           style: AppTextStyles.font16BlackW400
                               .copyWith(color: AppColors.darkGray)),
                       verticalSpace(25),
                       Row(
                         children: [
                           Text(
-                            "Total Price: \$${product.price}\nDiscount: %9.25",
+                            "Total Price: \$${widget.product.price}\nDiscount: %9.25",
                             style: AppTextStyles.font16BlackW400,
                           ),
                           horizontalSpace(12),
@@ -105,7 +154,7 @@ class ProductDetailsScreen extends StatelessWidget {
                       ),
                       verticalSpace(16),
                       ListOfReviews(
-                        product: product,
+                        product: widget.product,
                       ),
                       verticalSpace(20),
                     ],

@@ -7,27 +7,17 @@ import 'package:online_store/core/routing/routes.dart';
 import 'package:online_store/features/home/ui/widgets/drawer/drawer_list_item.dart';
 import 'package:online_store/features/home/ui/widgets/drawer/profile_section.dart';
 
-class DrawerMenu extends StatefulWidget {
+class DrawerMenu extends StatelessWidget {
   final Animation<Offset> position;
   final Animation<double> scale;
   const DrawerMenu({super.key, required this.position, required this.scale});
 
   @override
-  State<DrawerMenu> createState() => _DrawerMenuState();
-}
-
-class _DrawerMenuState extends State<DrawerMenu> {
-  //  @override
-  //    initState(){
-  //   super.initState();
-  //   BlocProvider.of<ProfileCubit>(context);
-  // }
-  @override
   Widget build(BuildContext context) {
     return SlideTransition(
-      position: widget.position,
+      position: position,
       child: ScaleTransition(
-        scale: widget.scale,
+        scale: scale,
         child: Padding(
           padding: const EdgeInsets.only(left: 16.0),
           child: Align(
@@ -37,7 +27,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                 ProfileSection(),
+                const ProfileSection(),
                 verticalSpace(32),
                 DrawerListItem(
                   title: "Edit Profile",
@@ -50,7 +40,7 @@ class _DrawerMenuState extends State<DrawerMenu> {
                 DrawerListItem(
                   title: 'Favorite products',
                   onTap: () {
-                    // Navigate to favoriteProductsScreen
+                    context.pushNamed(Routes.favoriteProductsScreen);
                   },
                   icon: Icons.favorite_border,
                 ),

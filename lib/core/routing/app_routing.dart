@@ -1,10 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_store/core/di/dependancy_injection.dart';
-import 'package:online_store/core/helpers/constants.dart';
-import 'package:online_store/core/helpers/shared_pref_helper.dart';
 import 'package:online_store/core/routing/routes.dart';
+import 'package:online_store/features/favorite_products/logic/cubit/favorites_cubit.dart';
+import 'package:online_store/features/favorite_products/ui/favorite_products_screen.dart';
 import 'package:online_store/features/home/data/models/product_model.dart';
 import 'package:online_store/features/home/logic/cubits/categories_cubit/category_cubit.dart';
 import 'package:online_store/features/home/logic/cubits/products_cubit/product_cubit.dart';
@@ -51,21 +50,30 @@ class AppRouter {
                   BlocProvider(
                     create: (context) =>
                         getIt<ProfileCubit>()..loadProfileData(),
-                        //..loadProfileData( SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken))
+                    //..loadProfileData( SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken))
                   )
                 ], child: const HomeScreen()));
 
       case Routes.productDetailsScreen:
         final arg = settings.arguments as Product;
         return MaterialPageRoute(
-            builder: (context) => ProductDetailsScreen(
-                  product: arg,
+            builder: (context) => BlocProvider(
+                  create: (context) => getIt<FavoritesCubit>(),
+                  child: ProductDetailsScreen(
+                    product: arg,
+                  ),
                 ));
       case Routes.searchScreen:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
                   create: (context) => getIt<SearchCubit>(),
                   child: const SearchScreen(),
+                ));
+                case Routes.favoriteProductsScreen:
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+                  create: (context) => getIt<FavoritesCubit>()..getFavoriteProducts(),
+                  child: const FavoriteProductsScreen(),
                 ));
 
       default:

@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:online_store/core/helpers/constants.dart';
 import 'package:online_store/core/helpers/spacing.dart';
 import 'package:online_store/core/theming/app_text_styles.dart';
+import 'package:online_store/core/widgets/custom_empty_screen.dart';
 import 'package:online_store/features/home/data/models/product_model.dart';
 import 'package:online_store/features/search/logic/cubit/search_cubit.dart';
 import 'package:online_store/features/search/ui/widgets/product_search_item.dart';
@@ -21,21 +22,7 @@ class SearchBlocBuilder extends StatelessWidget {
           if (state is SearchSuccessful) {
             List<Product> productsList = state.productsList;
             return productsList.isEmpty
-                ? Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        MyAppImages.noDataSvgImage,
-                        width: 200.w,
-                        height: 200.h,
-                      ),
-                      verticalSpace(12),
-                      const Text(
-                        "No Products Founded",
-                        style: AppTextStyles.font18BlackW900,
-                      ),
-                    ],
-                  )
+                ? const CustomEmptyScreen(title: "No Products Founded")
                 : ListView.separated(
                     separatorBuilder: (context, index) => verticalSpace(16),
                     itemCount: productsList.length,

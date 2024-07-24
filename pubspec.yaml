@@ -75,6 +75,8 @@ dependencies:
   shared_preferences: ^2.2.3
   #Flutter Secure Storage provides API to store data in secure storage.
   flutter_secure_storage: ^9.2.2
+  #Flutter plugin for SQLite, a self-contained, high-reliability, embedded, SQL database engine.
+  sqflite: ^2.3.3+1
 
   cloud_firestore: ^4.17.5
   google_sign_in: ^6.2.1

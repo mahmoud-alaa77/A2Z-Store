@@ -2,7 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
+import 'package:online_store/core/helpers/database_helper.dart';
 import 'package:online_store/core/networking/api_services.dart';
+import 'package:online_store/features/favorite_products/data/repo/favorites_repo.dart';
+import 'package:online_store/features/favorite_products/logic/cubit/favorites_cubit.dart';
 import 'package:online_store/features/home/data/repos/home_repo.dart';
 import 'package:online_store/features/home/logic/cubits/categories_cubit/category_cubit.dart';
 import 'package:online_store/features/home/logic/cubits/products_cubit/product_cubit.dart';
@@ -24,6 +27,9 @@ Future<void> setupGetIt() async {
     () => FirebaseAuth.instance,
   );
 
+getIt.registerLazySingleton<DataBaseHelper>(
+    () => DataBaseHelper(),
+  );
   getIt.registerLazySingleton<FirebaseFirestore>(
     () => FirebaseFirestore.instance,
   );
@@ -58,6 +64,11 @@ Future<void> setupGetIt() async {
 
   getIt.registerLazySingleton<SearchRepo>(() => SearchRepo(getIt()));
   getIt.registerFactory<SearchCubit>(() => SearchCubit(getIt()));
+
+  //favorites Products
+
+  getIt.registerLazySingleton<FavoritesRepo>(() => FavoritesRepo(getIt()));
+  getIt.registerFactory<FavoritesCubit>(() => FavoritesCubit(getIt()));
 }
 
 Dio createAndSetUpDio() {
