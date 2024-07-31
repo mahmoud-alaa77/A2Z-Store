@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:online_store/core/di/dependancy_injection.dart';
 import 'package:online_store/core/helpers/constants.dart';
 import 'package:online_store/core/helpers/my_bloc_observer.dart';
@@ -14,7 +13,6 @@ import 'firebase_options.dart';
 
 bool isLogedInUser = false;
 void main() async {
-
   setupGetIt();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(

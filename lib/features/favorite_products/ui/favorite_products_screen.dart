@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:online_store/core/helpers/constants.dart';
 import 'package:online_store/core/helpers/database_helper.dart';
 import 'package:online_store/core/helpers/spacing.dart';
 import 'package:online_store/core/theming/app_colors.dart';
@@ -40,27 +41,27 @@ class FavoriteProductsScreen extends StatelessWidget {
 
   AppBar favoritesAppBar() {
     return AppBar(
-          elevation: 0,
-          backgroundColor: Colors.white,
-          title: Row(
-            children: [
-              horizontalSpace(24),
-              const Text("My Favorite Products",
-                  style: AppTextStyles.font18BlackW900),
-              horizontalSpace(4),
-              const Icon(
-                Icons.favorite,
-                color: AppColors.mainBlack,
-                size: 30,
-              ),
-            ],
+      elevation: 0,
+      backgroundColor: Colors.white,
+      title: Row(
+        children: [
+          horizontalSpace(24),
+          const Text("My Favorite Products",
+              style: AppTextStyles.font18BlackW900),
+          horizontalSpace(4),
+          const Icon(
+            Icons.favorite,
+            color: AppColors.mainBlack,
+            size: 30,
           ),
-        );
+        ],
+      ),
+    );
   }
 
   Center favoriteProductsNotFounded() {
     return const Center(
-        child: CustomEmptyScreen(title: "No Favorite Products Founded"));
+        child: CustomEmptyScreen(title: "No Favorite Products Founded",image: MyAppImages.noDataSvgImage,));
   }
 
   ListView favoritProductsFounded(FavoritesProductsLoaded state) {
@@ -75,7 +76,8 @@ class FavoriteProductsScreen extends StatelessWidget {
         return FavoriteProductItem(
           product: state.products[index],
           onPressed: () {
-            DataBaseHelper().delete(state.products[index].title.toString());
+            DataBaseHelper()
+                .deleteFromFavorites(state.products[index].title.toString());
             context.read<FavoritesCubit>().getFavoriteProducts();
           },
         );

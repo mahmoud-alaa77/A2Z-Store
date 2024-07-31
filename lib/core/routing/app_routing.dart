@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:online_store/core/di/dependancy_injection.dart';
 import 'package:online_store/core/routing/routes.dart';
+import 'package:online_store/features/cart/logic/cubit/cart_cubit.dart';
+import 'package:online_store/features/cart/ui/cart_screen.dart';
 import 'package:online_store/features/favorite_products/logic/cubit/favorites_cubit.dart';
 import 'package:online_store/features/favorite_products/ui/favorite_products_screen.dart';
 import 'package:online_store/features/home/data/models/product_model.dart';
@@ -24,6 +26,12 @@ class AppRouter {
       case Routes.onBoardingScreen:
         return MaterialPageRoute(
             builder: (context) => const OnBoardingScreen());
+      case Routes.cartScreen:
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+                  create: (context) => getIt<CartCubit>()..getCartItems(),
+                  child: const CartScreen(),
+                ));
       case Routes.loginScreen:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
@@ -57,8 +65,15 @@ class AppRouter {
       case Routes.productDetailsScreen:
         final arg = settings.arguments as Product;
         return MaterialPageRoute(
-            builder: (context) => BlocProvider(
-                  create: (context) => getIt<FavoritesCubit>(),
+            builder: (context) => MultiBlocProvider(
+                  providers: [
+                    BlocProvider(
+                      create: (context) => getIt<FavoritesCubit>(),
+                    ),
+                    BlocProvider(
+                      create: (context) => getIt<CartCubit>(),
+                    ),
+                  ],
                   child: ProductDetailsScreen(
                     product: arg,
                   ),
@@ -69,10 +84,11 @@ class AppRouter {
                   create: (context) => getIt<SearchCubit>(),
                   child: const SearchScreen(),
                 ));
-                case Routes.favoriteProductsScreen:
+      case Routes.favoriteProductsScreen:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(
-                  create: (context) => getIt<FavoritesCubit>()..getFavoriteProducts(),
+                  create: (context) =>
+                      getIt<FavoritesCubit>()..getFavoriteProducts(),
                   child: const FavoriteProductsScreen(),
                 ));
 
