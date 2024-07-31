@@ -48,7 +48,7 @@ class DrawerMenu extends StatelessWidget {
                 DrawerListItem(
                   title: 'Cart',
                   onTap: () {
-                    // Navigate to CartScreen
+                    context.pushNamed(Routes.cartScreen);
                   },
                   icon: Icons.shopping_cart_outlined,
                 ),

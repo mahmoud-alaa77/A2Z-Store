@@ -4,6 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:online_store/core/helpers/database_helper.dart';
 import 'package:online_store/core/networking/api_services.dart';
+import 'package:online_store/features/cart/data/repos/cart_repo.dart';
+import 'package:online_store/features/cart/logic/cubit/cart_cubit.dart';
 import 'package:online_store/features/favorite_products/data/repo/favorites_repo.dart';
 import 'package:online_store/features/favorite_products/logic/cubit/favorites_cubit.dart';
 import 'package:online_store/features/home/data/repos/home_repo.dart';
@@ -26,12 +28,13 @@ Future<void> setupGetIt() async {
   getIt.registerLazySingleton<FirebaseAuth>(
     () => FirebaseAuth.instance,
   );
-
-getIt.registerLazySingleton<DataBaseHelper>(
-    () => DataBaseHelper(),
-  );
   getIt.registerLazySingleton<FirebaseFirestore>(
     () => FirebaseFirestore.instance,
+  );
+
+//local database
+  getIt.registerFactory<DataBaseHelper>(
+    () => DataBaseHelper(),
   );
 
   //Api Service
@@ -41,7 +44,7 @@ getIt.registerLazySingleton<DataBaseHelper>(
   );
 
   // signup
-  getIt.registerLazySingleton<SignUpRepo>(() => SignUpRepo(getIt(),getIt()));
+  getIt.registerLazySingleton<SignUpRepo>(() => SignUpRepo(getIt(), getIt()));
   getIt.registerFactory<SignUpCubit>(() => SignUpCubit(getIt()));
 
   // login
@@ -69,6 +72,10 @@ getIt.registerLazySingleton<DataBaseHelper>(
 
   getIt.registerLazySingleton<FavoritesRepo>(() => FavoritesRepo(getIt()));
   getIt.registerFactory<FavoritesCubit>(() => FavoritesCubit(getIt()));
+
+  //cart
+  getIt.registerFactory<CartRepo>(() => CartRepo(getIt()));
+  getIt.registerFactory<CartCubit>(() => CartCubit(getIt(), getIt()));
 }
 
 Dio createAndSetUpDio() {

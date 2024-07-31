@@ -21,7 +21,7 @@ class _SearchScreenState extends State<SearchScreen> {
   double startValue = 0.0;
   double endValue = 2000.0;
   bool showFilterList = false;
-  late String val;
+  late String? val;
   @override
   Widget build(BuildContext context) {
     var searchCubit = context.read<SearchCubit>();
@@ -110,12 +110,12 @@ class _SearchScreenState extends State<SearchScreen> {
         ApplayAndCancelButtons(
           onPressedApplay: () {
             searchCubit.productsList.clear();
-            searchCubit.searchAndFilterByPriceRange(val, startValue, endValue);
+            searchCubit.searchAndFilterByPriceRange(val ??"", startValue, endValue);
             searchCubit.isFiltered = true;
           },
           onPressedCancel: () {
             searchCubit.productsList.clear();
-            searchCubit.searchByValue(val);
+            searchCubit.searchByValue(val??"");
 
             searchCubit.isFiltered = false;
           },

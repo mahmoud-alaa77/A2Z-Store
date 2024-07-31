@@ -20,7 +20,7 @@ class FavoritesRepo {
 
   checkIsFavoriteOrNot(String title, String userId) async {
     try {
-      final product = await _dataBaseHelper.isFavorite(title, userId);
+      final product = await _dataBaseHelper.isFavoriteProduct(title, userId);
       //await SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken)
       return Right(product);
     } catch (error) {

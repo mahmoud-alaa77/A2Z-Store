@@ -22,7 +22,7 @@ class SearchBlocBuilder extends StatelessWidget {
           if (state is SearchSuccessful) {
             List<Product> productsList = state.productsList;
             return productsList.isEmpty
-                ? const CustomEmptyScreen(title: "No Products Founded")
+                ? const CustomEmptyScreen(title: "No Products Founded",image: MyAppImages.noDataSvgImage,)
                 : ListView.separated(
                     separatorBuilder: (context, index) => verticalSpace(16),
                     itemCount: productsList.length,
