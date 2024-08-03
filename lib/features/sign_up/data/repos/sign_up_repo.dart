@@ -30,7 +30,7 @@ class SignUpRepo {
       UserModel newUser = UserModel(
         name: requestModel.name,
         imageUrl: MyAppImages.defaultUserImage,
-        token: response.user!.uid ?? "",
+        token: response.user!.uid ,
       );
 
       await HelperFunctions().addUserToFirestore(

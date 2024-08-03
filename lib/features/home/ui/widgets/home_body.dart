@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_store/core/helpers/spacing.dart';
 import 'package:online_store/core/theming/app_text_styles.dart';
+import 'package:online_store/features/edit_profile/logic/profile_cubit/profile_cubit.dart';
 import 'package:online_store/features/home/ui/widgets/categories/categories_list_view.dart';
 import 'package:online_store/features/home/ui/widgets/drawer/drawer_menu.dart';
 import 'package:online_store/features/home/ui/widgets/app_bar/home_app_bar.dart';
@@ -37,7 +39,6 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
     _slideAnimation =
         Tween<Offset>(begin: const Offset(-1, 0), end: const Offset(0, 0))
             .animate(_controller);
-    
   }
 
   @override
@@ -100,9 +101,13 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
                         },
                       ),
                       verticalSpace(16),
-                       Text(
-                        "Hi, ${FirebaseAuth.instance.currentUser!.displayName}",
-                        style: AppTextStyles.font24BlackW900,
+                      BlocBuilder<ProfileCubit, ProfileState>(
+                        builder: (context, state) {
+                          return Text(
+                            "Hi, ${context.read<ProfileCubit>().userName}",
+                            style: AppTextStyles.font24BlackW900,
+                          );
+                        },
                       ),
                       const Text(
                         "To our Store",

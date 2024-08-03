@@ -32,7 +32,7 @@ class DrawerMenu extends StatelessWidget {
                 DrawerListItem(
                   title: "Edit Profile",
                   onTap: () {
-                    // Navigate to EditProfileScreen
+                    context.pushReplacementNamed(Routes.editProfileScreen);
                   },
                   icon: Icons.person_pin,
                 ),
@@ -66,7 +66,6 @@ class DrawerMenu extends StatelessWidget {
                   onTap: () async {
                     await FirebaseAuth.instance.signOut();
                     await GoogleSignIn().signOut();
-                    //await SharedPrefHelper.clearAllSecuredData();
                     context.pushReplacementNamed(Routes.loginScreen);
                   },
                   icon: Icons.login_outlined,

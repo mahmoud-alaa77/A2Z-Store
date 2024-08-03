@@ -13,7 +13,7 @@ class HelperFunctions {
       'image': user.imageUrl,
     });
   }
-  
+
 
  double convertDoubleNumber(BuildContext context,double number) {
      double totalprice =number;

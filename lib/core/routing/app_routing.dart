@@ -4,6 +4,7 @@ import 'package:online_store/core/di/dependancy_injection.dart';
 import 'package:online_store/core/routing/routes.dart';
 import 'package:online_store/features/cart/logic/cubit/cart_cubit.dart';
 import 'package:online_store/features/cart/ui/cart_screen.dart';
+import 'package:online_store/features/edit_profile/ui/edit_profile_screen.dart';
 import 'package:online_store/features/favorite_products/logic/cubit/favorites_cubit.dart';
 import 'package:online_store/features/favorite_products/ui/favorite_products_screen.dart';
 import 'package:online_store/features/home/data/models/product_model.dart';
@@ -14,7 +15,7 @@ import 'package:online_store/features/login/logic/cubit/login_cubit.dart';
 import 'package:online_store/features/login/ui/login_screen.dart';
 import 'package:online_store/features/on_boarding/ui/on_boarding_screen.dart';
 import 'package:online_store/features/product_details/ui/product_details_screen.dart';
-import 'package:online_store/features/home/logic/cubits/profile_cubit/profile_cubit.dart';
+import 'package:online_store/features/edit_profile/logic/profile_cubit/profile_cubit.dart';
 import 'package:online_store/features/search/logic/cubit/search_cubit.dart';
 import 'package:online_store/features/search/ui/search_screen.dart';
 import 'package:online_store/features/sign_up/logic/sign_up_cubit.dart';
@@ -26,6 +27,12 @@ class AppRouter {
       case Routes.onBoardingScreen:
         return MaterialPageRoute(
             builder: (context) => const OnBoardingScreen());
+      case Routes.editProfileScreen:
+        return MaterialPageRoute(
+            builder: (context) => BlocProvider(
+                  create: (context) => getIt<ProfileCubit>()..loadProfileData(),
+                  child: const EditProfileScreen(),
+                ));
       case Routes.cartScreen:
         return MaterialPageRoute(
             builder: (context) => BlocProvider(

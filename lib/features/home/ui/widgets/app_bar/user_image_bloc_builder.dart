@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_store/core/theming/app_colors.dart';
 import 'package:online_store/core/theming/app_text_styles.dart';
-import 'package:online_store/features/home/logic/cubits/profile_cubit/profile_cubit.dart';
+import 'package:online_store/features/edit_profile/logic/profile_cubit/profile_cubit.dart';
 import 'package:shimmer/shimmer.dart';
 
 class UserImageBlocBuilder extends StatelessWidget {

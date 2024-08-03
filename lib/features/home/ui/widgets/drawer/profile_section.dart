@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_store/core/theming/app_text_styles.dart';
-import 'package:online_store/features/home/logic/cubits/profile_cubit/profile_cubit.dart';
+import 'package:online_store/features/edit_profile/logic/profile_cubit/profile_cubit.dart';
 
 import '../../../../../core/theming/app_colors.dart';
 
@@ -12,11 +12,7 @@ class ProfileSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileCubit, ProfileState>(
-      // buildWhen: (previous, current) =>
-      //     current is ProfileInitial ||
-      //     current is ProfileLoaded ||
-      //     current is ProfileLoading ||
-      //     current is ProfileError,
+      buildWhen: (previous, current) => current is ProfileLoaded || current is ProfileInitial || current is ProfileLoading,
       builder: (context, state) {
         if (state is ProfileLoaded) {
           return Align(

@@ -79,9 +79,12 @@ dependencies:
   sqflite: ^2.3.3+1
 
   cloud_firestore: ^4.17.5
+  #google sign in
   google_sign_in: ^6.2.1
   #Toast Library for Flutter, Easily create toast messages in single line of code
   toast: ^0.3.0
+  #Flutter plugin for selecting images from the Android and iOS image library, and taking new pictures with the camera.
+  image_picker: ^1.1.2
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6

@@ -12,6 +12,8 @@ final class ProfileLoaded extends ProfileState {
   ProfileLoaded({required this.userModel});
 }
 
+final class ProfileUpdateSuccessfully extends ProfileState {}
+
 final class ProfileError extends ProfileState {
   final String errorMessage;
 

@@ -35,4 +35,17 @@ class ProfileRepo {
       }
     }
   }
+
+  Future<Either<Failure, String>> updateUserName(String newName) async {
+    try {
+      final userRef = firebaseFirestoreInstance.collection('users').doc(
+          await SharedPrefHelper.getSecuredString(SharedPrefKeys.userToken));
+      await userRef.update({
+        'name': newName,
+      });
+      return const Right("Update Success");
+    } catch (error) {
+      return Left(Failure(error.toString()));
+    }
+  }
 }
