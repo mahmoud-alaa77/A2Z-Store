@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_store/core/helpers/spacing.dart';
 import 'package:online_store/core/theming/app_text_styles.dart';
-import 'package:online_store/features/edit_profile/logic/profile_cubit/profile_cubit.dart';
+import 'package:online_store/features/edit_profile/logic/profile_info_cubit/profile_info_cubit.dart';
 import 'package:online_store/features/home/ui/widgets/categories/categories_list_view.dart';
 import 'package:online_store/features/home/ui/widgets/drawer/drawer_menu.dart';
 import 'package:online_store/features/home/ui/widgets/app_bar/home_app_bar.dart';
@@ -101,10 +101,10 @@ class _HomeScreenBodyState extends State<HomeScreenBody>
                         },
                       ),
                       verticalSpace(16),
-                      BlocBuilder<ProfileCubit, ProfileState>(
+                      BlocBuilder<ProfileInfoCubit, ProfileInfoState>(
                         builder: (context, state) {
                           return Text(
-                            "Hi, ${context.read<ProfileCubit>().userName}",
+                            "Hi, ${context.read<ProfileInfoCubit>().userName}",
                             style: AppTextStyles.font24BlackW900,
                           );
                         },

@@ -1,11 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:online_store/core/helpers/database_helper.dart';
 import 'package:online_store/core/networking/api_services.dart';
 import 'package:online_store/features/cart/data/repos/cart_repo.dart';
 import 'package:online_store/features/cart/logic/cubit/cart_cubit.dart';
+import 'package:online_store/features/edit_profile/logic/profile_image_cubit/profile_image_cubit.dart';
 import 'package:online_store/features/favorite_products/data/repo/favorites_repo.dart';
 import 'package:online_store/features/favorite_products/logic/cubit/favorites_cubit.dart';
 import 'package:online_store/features/home/data/repos/home_repo.dart';
@@ -14,7 +16,7 @@ import 'package:online_store/features/home/logic/cubits/products_cubit/product_c
 import 'package:online_store/features/login/data/repos/login_repo.dart';
 import 'package:online_store/features/login/logic/cubit/login_cubit.dart';
 import 'package:online_store/features/edit_profile/data/repos/profile_repo.dart';
-import 'package:online_store/features/edit_profile/logic/profile_cubit/profile_cubit.dart';
+import 'package:online_store/features/edit_profile/logic/profile_info_cubit/profile_info_cubit.dart';
 import 'package:online_store/features/search/data/repos/search_repo.dart';
 import 'package:online_store/features/search/logic/cubit/search_cubit.dart';
 import 'package:online_store/features/sign_up/data/repos/sign_up_repo.dart';
@@ -30,6 +32,10 @@ Future<void> setupGetIt() async {
   );
   getIt.registerLazySingleton<FirebaseFirestore>(
     () => FirebaseFirestore.instance,
+  );
+
+  getIt.registerLazySingleton<FirebaseStorage>(
+    () => FirebaseStorage.instance,
   );
 
 //local database
@@ -59,9 +65,10 @@ Future<void> setupGetIt() async {
   getIt.registerFactory<CategoryCubit>(() => CategoryCubit(getIt()));
 
 //profile
-  getIt.registerLazySingleton<ProfileRepo>(() => ProfileRepo(getIt()));
+  getIt.registerLazySingleton<ProfileRepo>(() => ProfileRepo(getIt(), getIt()));
 
-  getIt.registerFactory<ProfileCubit>(() => ProfileCubit(getIt()));
+  getIt.registerFactory<ProfileInfoCubit>(() => ProfileInfoCubit(getIt()));
+  getIt.registerFactory<ProfileImageCubit>(() => ProfileImageCubit(getIt()));
 
   //search
 

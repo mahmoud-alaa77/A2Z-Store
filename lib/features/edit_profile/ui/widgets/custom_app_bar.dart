@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:online_store/core/helpers/extensions.dart';
 import 'package:online_store/core/routing/routes.dart';
 import 'package:online_store/core/theming/app_text_styles.dart';
-import 'package:online_store/features/edit_profile/logic/profile_cubit/profile_cubit.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
@@ -18,7 +16,7 @@ class CustomAppBar extends StatelessWidget {
           IconButton(
               onPressed: () async {
                 context.pushReplacementNamed(Routes.homeScreen);
-                await context.read<ProfileCubit>().loadProfileData();
+                //await context.read<ProfileCubit>().loadProfileData();
               },
               icon: Icon(
                 Icons.arrow_back_ios_new,
