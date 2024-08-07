@@ -73,7 +73,7 @@ class SignUpBlocListener extends StatelessWidget {
             child: ListBody(
               children: <Widget>[
                 Text(
-                  'Congratulations, you have signed up successfully 🎉',
+                  'Congratulations, you have signed up successfully',
                   style: AppTextStyles.font18DarkGrayW700,
                 ),
               ],

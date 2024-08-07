@@ -22,7 +22,7 @@ class CustomEmptyScreen extends StatelessWidget {
         verticalSpace(12),
         Text(
           title,
-          style: AppTextStyles.font18BlackW900,
+          style: AppTextStyles.font18BlackW900.copyWith(fontSize: 20),
         ),
       ],
     );
