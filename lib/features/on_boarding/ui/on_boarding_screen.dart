@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:online_store/core/helpers/constants.dart';
 import 'package:online_store/core/routing/routes.dart';
 import 'package:online_store/core/theming/app_colors.dart';
 import 'package:online_store/core/theming/app_text_styles.dart';
@@ -21,7 +22,7 @@ class OnBoardingScreen extends StatelessWidget {
               color: Colors.white,
             ),
             finishButtonText: "Get Started",
-            onFinish: (){
+            onFinish: () {
               Navigator.pushReplacementNamed(context, Routes.loginScreen);
             },
             finishButtonStyle: const FinishButtonStyle(
@@ -63,23 +64,25 @@ class OnBoardingScreen extends StatelessWidget {
   }
 }
 
-List<OnBoardingPageBody> pageBodiesList =const [
+List<OnBoardingPageBody> pageBodiesList = const [
   OnBoardingPageBody(
-                title: "20% Discount\nNew Arrival Product ",
-                desc:
-                    "Publish up your selfies to make yourself\nmore beautiful with this app.",
-                imageUrl: "assets/images/on_boarding_image_1.jpg",
-              ),
-              OnBoardingPageBody(
-                title: "Take Advantage\nOf The Offer Shopping",
-                desc:
-                    "Publish up your selfies to make yourself\nmore beautiful with this app.",
-                imageUrl: "assets/images/on_boarding_image_2.jpg",
-              ),
-              OnBoardingPageBody(
-                title: "All Types Offers\nWithin Your Reach",
-                desc:
-                    "Publish up your selfies to make yourself\nmore beautiful with this app.",
-                imageUrl: "assets/images/on_boarding_image_3.jpg",
-              ),
+    title: "20% Discount\nNew Arrival Product ",
+    desc:
+        "Publish up your selfies to make yourself\nmore beautiful with this app.",
+    imageUrl: MyAppImages.onBoardingImage1,
+  ),
+
+  OnBoardingPageBody(
+    title: "Take Advantage\nOf The Offer Shopping",
+    desc:
+        "Publish up your selfies to make yourself\nmore beautiful with this app.",
+    imageUrl: MyAppImages.onBoardingImage2,
+  ),
+  
+  OnBoardingPageBody(
+    title: "All Types Offers\nWithin Your Reach",
+    desc:
+        "Publish up your selfies to make yourself\nmore beautiful with this app.",
+    imageUrl: MyAppImages.onBoardingImage3,
+  ),
 ];

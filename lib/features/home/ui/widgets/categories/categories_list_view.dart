@@ -34,7 +34,7 @@ class _CategoriesListViewState extends State<CategoriesListView> {
            // context.read<ProductCubit>().getProductsByCategoryId(state.categories.first.lowercaseName);
             return setCategoriesLoaded(state);
           } else if (state is CategoriesLoadedFailure) {
-            return Center(child: Text(state.message));
+            return state.message == "No Internet Connection" ?const SizedBox.shrink(): Center(child: Text(state.message));
           } else {
             return const CategoryShimmerLoading();
           }

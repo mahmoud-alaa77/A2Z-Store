@@ -172,20 +172,7 @@ class DataBaseHelper {
     return numOfRecord;
   }
 
-  // Future<int> updateCart(CartModel cart,int newQuantity) async {
-  //   Database clint = await db;
-  //   int record =await  clint.update(
-  //       cartsTableName,
-  //       {
-  //         'quantity': newQuantity,
-  //       },
-  //       where: "title=? AND user_id=?",
-  //       whereArgs: [cart.title, cart.userId]);
-  //   return record;
-  // }
-
-
- Future<bool> isCartItem(String productTitle, String userId) async {
+  Future<bool> isCartItem(String productTitle, String userId) async {
     Database clint = await db;
 
     String sql =
@@ -196,5 +183,4 @@ class DataBaseHelper {
 
     return results.isNotEmpty;
   }
-
 }

@@ -8,7 +8,7 @@ class AppTextStyles {
     fontWeight: FontWeight.w900,
   );
 
-    static const TextStyle font20BlackW700 = TextStyle(
+  static const TextStyle font20BlackW700 = TextStyle(
     color: AppColors.mainBlack,
     fontSize: 20,
     fontWeight: FontWeight.w700,
@@ -29,25 +29,25 @@ class AppTextStyles {
     fontSize: 16,
     fontWeight: FontWeight.w400,
   );
- static const TextStyle font12BlackW400 = TextStyle(
+  static const TextStyle font12BlackW400 = TextStyle(
     color: AppColors.mainBlack,
     fontSize: 12,
     fontWeight: FontWeight.w400,
   );
 
-static const TextStyle font12DarkGrayW400 = TextStyle(
+  static const TextStyle font12DarkGrayW400 = TextStyle(
     color: AppColors.darkGray,
     fontSize: 12,
     fontWeight: FontWeight.w400,
   );
 
- static const TextStyle font18LightGrayW400 = TextStyle(
+  static const TextStyle font18LightGrayW400 = TextStyle(
     color: AppColors.lightGray,
     fontSize: 18,
     fontWeight: FontWeight.w400,
   );
 
-   static const TextStyle font18DarkGrayW700 = TextStyle(
+  static const TextStyle font18DarkGrayW700 = TextStyle(
     color: AppColors.darkGray,
     fontSize: 18,
     fontWeight: FontWeight.w700,
@@ -59,7 +59,7 @@ static const TextStyle font12DarkGrayW400 = TextStyle(
     fontWeight: FontWeight.w400,
   );
 
-   static const TextStyle font16LighterGrayW300 = TextStyle(
+  static const TextStyle font16LighterGrayW300 = TextStyle(
     color: AppColors.lighterGray,
     fontSize: 16,
     fontWeight: FontWeight.w300,
@@ -77,12 +77,9 @@ static const TextStyle font12DarkGrayW400 = TextStyle(
     fontWeight: FontWeight.w500,
   );
 
-static const TextStyle font14BlueW700 = TextStyle(
+  static const TextStyle font14BlueW700 = TextStyle(
     color: Colors.blue,
     fontSize: 14,
     fontWeight: FontWeight.w700,
   );
-
-  
-
 }

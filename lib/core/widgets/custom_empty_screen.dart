@@ -7,7 +7,8 @@ import 'package:online_store/core/theming/app_text_styles.dart';
 class CustomEmptyScreen extends StatelessWidget {
   final String title;
   final String image;
-  const CustomEmptyScreen({super.key, required this.title, required this.image});
+  const CustomEmptyScreen(
+      {super.key, required this.title, required this.image});
 
   @override
   Widget build(BuildContext context) {

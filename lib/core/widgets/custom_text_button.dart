@@ -31,7 +31,7 @@ class CustomTextButton extends StatelessWidget {
       this.iconColor,
       this.iconSize,
       this.image,
-      this.showImage=false});
+      this.showImage = false});
 
   @override
   Widget build(BuildContext context) {
@@ -50,11 +50,17 @@ class CustomTextButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-           showImage ? Image.asset(image!,width: 40,height: 40,): Icon(
-              icon,
-              color: iconColor,
-              size: iconSize,
-            ),
+            showImage
+                ? Image.asset(
+                    image!,
+                    width: 40,
+                    height: 40,
+                  )
+                : Icon(
+                    icon,
+                    color: iconColor,
+                    size: iconSize,
+                  ),
             horizontalSpace(5),
             Text(
               title,

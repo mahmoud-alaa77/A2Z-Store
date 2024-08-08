@@ -52,14 +52,14 @@ class DrawerMenu extends StatelessWidget {
                   },
                   icon: Icons.shopping_cart_outlined,
                 ),
-                verticalSpace(12),
-                DrawerListItem(
-                  title: 'Settings',
-                  onTap: () {
-                    // Navigate to SettingsScreen
-                  },
-                  icon: Icons.settings,
-                ),
+                // verticalSpace(12),
+                // DrawerListItem(
+                //   title: 'Settings',
+                //   onTap: () {
+                //     // Navigate to SettingsScreen
+                //   },
+                //   icon: Icons.settings,
+                // ),
                 verticalSpace(12),
                 DrawerListItem(
                   title: 'Log out',
