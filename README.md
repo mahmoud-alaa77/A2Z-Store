@@ -19,3 +19,8 @@ A2Z Store is a feature-rich ecommerce application that offers a seamless and enj
 ## 👀Project UI
 ![Group 19](https://github.com/user-attachments/assets/d3cd7b05-3a06-4922-873c-19930eb64912)
 ![Group 20](https://github.com/user-attachments/assets/dc742e44-0a73-4776-9750-a78131d8e26c)
+
+https://github.com/user-attachments/assets/f6236009-edf4-4b18-bf57-fccbd806ca8d
+
+
+
